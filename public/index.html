@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="todoApp">
+<head>
+  <title>Todo App</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <script type="text/javascript" src="todo.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+</head>
+<body>
+    <h1>My Todo App</h1>
+  <div ng-controller="todoAppController as todoCtrl">
+    <ul>
+      <li></li>
+    </ul>
+    <input type="text" ng-model="newTask" placeholder="Enter new task here">
+    <button type="submit">Add Todo</button>
+  </div>
+</body>
+</html>
