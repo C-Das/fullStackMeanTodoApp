@@ -22,14 +22,30 @@ app.get('/',function(req,res){
 });
 
 app.post('/app/addTodo',function(req,res){
-  debugger;
-  console.log("New task is :"+req.body.task);
   var task = new Task ({
     task:req.body.task,
     done:false
   });
   task.save().then(function(dbtodo){
     res.json(dbtodo);
+  });
+});
+
+app.get('/app/getTodo',function(req,res){
+  Task.find({}).exec().then(function(response){
+    res.json(response);
+  });
+});
+
+app.put('/app/deleteTodo',function(req,res){
+  Task.remove({_id:req.body.id}).then(function(response){
+    res.json(response);
+  });
+});
+
+app.put('/app/updateTodo',function(req,res){
+  Task.update({_id:req.body.task._id},{$set : {done:req.body.task.done}}).then(function(response){
+    res.json(response);
   });
 });
 

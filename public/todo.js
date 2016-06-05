@@ -2,10 +2,7 @@ angular.module("todoApp",[])
   .controller("todoAppController", function($scope, $http){
 
     $scope.getTodo = function(){
-      http({
-        method:'GET',
-        url:'/app/getTodo'
-      }).then (function successCallback(response){
+      $http.get('/app/getTodo').then (function successCallback(response){
         $scope.tasks = response.data; //check
       }, function errorCallback (response){
           console.log("HTTP Effor in getTodo function");
@@ -13,7 +10,6 @@ angular.module("todoApp",[])
     }
 
     $scope.addTodo = function(){
-      console.log("new task"+$scope.newTask);
       $http.post('/app/addTodo',{task: $scope.newTask})
         .then (function successCallback(response){
         $scope.repos = response.data;
@@ -22,6 +18,24 @@ angular.module("todoApp",[])
       }, function errorCallback(response){
         console.log("HTTP Error in addTodo function");
       });
+    }
+
+    $scope.deleteTodo = function(id){
+      $http.put('/app/deleteTodo',{id:id})
+        .then(function successCallback(response){
+          $scope.getTodo();
+        }, function errorCallback(response){
+          console.log("Error in delete");
+        })
+    }
+
+    $scope.updateTodo = function(task){
+      $http.put('/app/updateTodo',{task:task})
+        .then (function successCallback(response){
+          console.log("Updated successfully");
+        }, function errorCallback(response){
+          console.log("Error in update");
+        });
     }
 
   })

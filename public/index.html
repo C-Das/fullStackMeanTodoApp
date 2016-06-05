@@ -9,12 +9,24 @@
 </head>
 <body>
     <h1>My Todo App</h1>
-  <div ng-controller="todoAppController as todoCtrl">
-    <ul>
-      <li></li>
-    </ul>
+  <div >
+    <div ng-controller="todoAppController as todoCtrl" ng-init="getTodo()">
+    <table>
+      <tr ng-repeat="task in tasks">
+        <td colspan="4">
+          <input type="checkbox" ng-model="task.done" ng-change="updateTodo(task)">
+        </td>
+        <td colspan="6">
+          {{ task.task}}
+        </td>
+        <td colspan="2">
+          <button type="submit" ng-model="deleteTask" ng-click="deleteTodo(task._id)">Delete</button>
+        </td>
+      </tr>
+    </table>
     <input type="text" ng-model="newTask" placeholder="Enter new task here">
     <button type="submit" ng-click="addTodo()">Add Todo</button>
+  </div>
   </div>
 </body>
 </html>
